@@ -14,7 +14,7 @@ const ScriptHistory = ({ onSelectScript }) => {
     const fetchScripts = async () => {
       try {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
-        const { data } = await axios.get('http://localhost:5000/api/scripts', config);
+        const { data } = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/scripts`, config);
         setScripts(data);
       } catch (error) {
         console.error('Error fetching scripts', error);
@@ -28,7 +28,7 @@ const ScriptHistory = ({ onSelectScript }) => {
     if (!scriptToDelete) return;
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      await axios.delete(`http://localhost:5000/api/scripts/${scriptToDelete}`, config);
+      await axios.delete(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/scripts/${scriptToDelete}`, config);
       setScripts(scripts.filter(s => s._id !== scriptToDelete));
     } catch (error) {
       console.error('Error deleting script', error);

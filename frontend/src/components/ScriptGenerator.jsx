@@ -40,7 +40,7 @@ const ScriptGenerator = ({ selectedScript }) => {
       };
       
       const { data } = await axios.post(
-        'http://localhost:5000/api/scripts/generate',
+        `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/scripts/generate`,
         { topic, evidence, durationMinutes },
         config
       );
@@ -74,7 +74,7 @@ const ScriptGenerator = ({ selectedScript }) => {
       };
       
       await axios.put(
-        `http://localhost:5000/api/scripts/${scriptId}`,
+        `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/scripts/${scriptId}`,
         { content: generatedScript },
         config
       );

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Play, Pause, Plus, Minus, ArrowLeft, Maximize, ZoomIn, ZoomOut, MonitorSmartphone, Video, Square } from 'lucide-react';
+import { Play, Pause, Plus, Minus, ArrowLeft, Maximize, ZoomIn, ZoomOut, MonitorSmartphone, Video, Square, RotateCcw } from 'lucide-react';
 
 const Teleprompter = () => {
   const location = useLocation();
@@ -103,6 +103,14 @@ const Teleprompter = () => {
   const toggleMirror = () => setIsMirrored(!isMirrored);
   const toggleWebcam = () => setShowWebcam(!showWebcam);
   
+  const handleRollback = () => {
+    setIsPlaying(false);
+    scrollPositionRef.current = 0;
+    if (containerRef.current) {
+      containerRef.current.scrollTop = 0;
+    }
+  };
+  
   const handleRecordToggle = () => {
     if (isRecording) {
       mediaRecorderRef.current.stop();
@@ -192,6 +200,10 @@ const Teleprompter = () => {
           {isPlaying ? <Pause size={32} /> : <Play size={32} />}
         </button>
         <button className="control-btn" onClick={increaseSpeed} title="Speed Up"><Plus size={20} /></button>
+        
+        <div style={{ width: '1px', height: '32px', background: 'rgba(255,255,255,0.2)', margin: '0 1rem' }}></div>
+        
+        <button className="control-btn" onClick={handleRollback} title="Restart / Rollback"><RotateCcw size={20} /></button>
         
         <div style={{ width: '1px', height: '32px', background: 'rgba(255,255,255,0.2)', margin: '0 1rem' }}></div>
         

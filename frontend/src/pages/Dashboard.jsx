@@ -12,13 +12,13 @@ const Dashboard = () => {
 
   return (
     <div className="container animate-fade-in">
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+      <div className="dashboard-header">
         <div>
           <p className="welcome-text">
             Welcome back, <span className="animate-shimmer" style={{ fontWeight: '700' }}>{user?.name}</span>
           </p>
         </div>
-        <div style={{ display: 'flex', gap: '1rem' }}>
+        <div className="dashboard-header-actions">
           <button onClick={() => navigate('/')} className="btn btn-outline" style={{ color: 'var(--text-primary)', borderColor: 'var(--glass-border)' }}>
             <Home size={18} /> Home
           </button>
